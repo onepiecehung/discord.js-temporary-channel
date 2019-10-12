@@ -1,0 +1,27 @@
+{
+  "name": "discord.js-temporary-channel",
+  "version": "1.0.0",
+  "description": "This package create temporary voice channel for discord",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onepiecehung/discord.js-temporary-channel.git"
+  },
+  "keywords": [
+    "discord",
+    "discord.js",
+    "discordjs",
+    "discord-temporary-channel",
+    "@ds112",
+    "@onepiecehung"
+  ],
+  "author": "@ds112, @onepiecehung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/onepiecehung/discord.js-temporary-channel/issues"
+  },
+  "homepage": "https://github.com/onepiecehung/discord.js-temporary-channel#readme"
+}
