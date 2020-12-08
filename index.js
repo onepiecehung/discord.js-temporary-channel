@@ -13,29 +13,31 @@ module.exports = {
         let settings = new setting()
         client.on('voiceStateUpdate', (oldMember, newMember) => {
             // ! leave
-            let isLeave = (oldMember.voiceChannel != undefined)
+            let isLeave = (oldMember.channel != undefined)
+
             if (isLeave) {
-                if (oldMember.voiceChannel.name.startsWith(settings.nameStartsWithTemp)) {
-                    if (oldMember.voiceChannel.members.size == 0) {
-                        oldMember.voiceChannel.delete()
+                console.log(isLeave);
+                if (oldMember.channel.name.startsWith(settings.nameStartsWithTemp)) {
+                    if (oldMember.channel.members.size == 0) {
+                        oldMember.channel.delete()
                     }
                     else { // change name
-                        let matchMember = oldMember.voiceChannel.members.find(x => `${settings.nameStartsWithTemp}${x.displayName}` == oldMember.voiceChannel.name);
+                        let matchMember = oldMember.channel.members.find(x => `${settings.nameStartsWithTemp}${x.displayName}` == oldMember.channel.name);
                         if (matchMember == null) {
-                            oldMember.voiceChannel.setName(`${settings.nameStartsWithTemp}${oldMember.voiceChannel.members.random().displayName}`)
+                            oldMember.channel.setName(`${settings.nameStartsWithTemp}${oldMember.channel.members.random().displayName}`)
                         }
                     }
                 }
             }
 
             // todo create channel
-            if (newMember.voiceChannel != null && newMember.voiceChannel.name.startsWith(settings.nameStartsWith)) {
-                newMember.guild.createChannel(`${settings.nameStartsWithTemp}${newMember.displayName}`, {
+            if (newMember.channel != null && newMember.channel.name.startsWith(settings.nameStartsWith)) {
+                newMember.guild.channels.create(`${settings.nameStartsWithTemp}${newMember.member.user.username}`, {
                     type: "voice",
-                    parent: newMember.voiceChannel.parent,
+                    parent: newMember.channel.parent,
                     userLimit: settings.userLimit,
                     reason: settings.reason
-                }).then(cloneChannel => newMember.setVoiceChannel(cloneChannel))
+                }).then(cloneChannel => newMember.setChannel(cloneChannel))
             }
         });
 
@@ -54,28 +56,28 @@ module.exports = {
         let settings = new setting()
         client.on('voiceStateUpdate', (oldMember, newMember) => {
             // ! leave
-            let isLeave = (oldMember.voiceChannel != undefined)
+            let isLeave = (oldMember.channel != undefined)
             if (isLeave) {
-                if (oldMember.voiceChannel.name.startsWith(settings.nameStartsWithTemp)) {
-                    if (oldMember.voiceChannel.members.size == 0) {
-                        oldMember.voiceChannel.delete()
+                if (oldMember.channel.name.startsWith(settings.nameStartsWithTemp)) {
+                    if (oldMember.channel.members.size == 0) {
+                        oldMember.channel.delete()
                     }
                     else { // change name
-                        let matchMember = oldMember.voiceChannel.members.find(x => `${settings.nameStartsWithTemp}${x.displayName}` == oldMember.voiceChannel.name);
+                        let matchMember = oldMember.channel.members.find(x => `${settings.nameStartsWithTemp}${x.displayName}` == oldMember.channel.name);
                         if (matchMember == null) {
-                            oldMember.voiceChannel.setName(`${settings.nameStartsWithTemp}${oldMember.voiceChannel.members.random().displayName}`)
+                            oldMember.channel.setName(`${settings.nameStartsWithTemp}${oldMember.channel.members.random().displayName}`)
                         }
                     }
                 }
             }
 
             // todo create channel
-            if (newMember.voiceChannel != null && newMember.voiceChannel.name.startsWith(settings.nameStartsWith)) {
-                newMember.guild.createChannel(`${settings.nameStartsWithTemp}${newMember.displayName}`, {
+            if (newMember.channel != null && newMember.channel.name.startsWith(settings.nameStartsWith)) {
+                newMember.guild.channels.create(`${settings.nameStartsWithTemp}${newMember.member.user.username}`, {
                     type: "voice",
                     userLimit: settings.userLimit,
                     reason: settings.reason
-                }).then(cloneChannel => newMember.setVoiceChannel(cloneChannel))
+                }).then(cloneChannel => newMember.setChannel(cloneChannel))
             }
         });
 

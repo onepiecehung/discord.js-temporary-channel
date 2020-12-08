@@ -7,7 +7,19 @@
 
 # Discord.js-Temporary-Channel (Only for voice channel)
 
-### Support npm: https://discord.gg/TfG5hep
+![javascript](https://img.shields.io/badge/javascript-ESNEXT-brightgreen.svg?logo=javascript&style=for-the-badge)
+
+### Discord: https://discord.gg/TfG5hep
+
+### QR
+
+<img align="left" width="235" height="235" src="https://i.imgur.com/QWrBftm.gif">
+
+### Important
+
+-   Support ^discord.js@12.5.1 in version 2
+
+-   If you using discord.js version < 12 please using version 1
 
 ### Thanks to Pie from RDVN
 
@@ -22,14 +34,14 @@ const client = new Discord.Client();
 const tempChannel = require("discord.js-temporary-channel");
 
 //just call API
-tempChannel.autoCreateChannel(client,{
-    userLimit = Number || user limit voice channel , default 17
-    reason = String || Reason create channel, default "powered by ds112",
-    nameStartsWith = String || name startWith channel, default "+ ",
-    nameStartsWithTemp = String || name startWith Temp channel, default "* "
-})
+tempChannel.autoCreateChannel(client, {
+    userLimit: 12,
+    reason: "powered by ds112",
+    nameStartsWith: "3AT ",
+    nameStartsWithTemp: "* ",
+});
 
-client.login("YOUR_DISCORD_APP_TOKEN")
+client.login("YOUR_DISCORD_APP_TOKEN");
 ```
 
 # API
