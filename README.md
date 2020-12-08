@@ -13,7 +13,7 @@
 
 ### QR
 
-<img align="left" width="235" height="235" src="https://i.imgur.com/QWrBftm.gif">
+<img align="left" width="235" height="235" src="./qrcode/invite.gif">
 
 ### Important
 
