@@ -55,3 +55,5 @@ client.login("YOUR_DISCORD_APP_TOKEN");
 # API
 
 ## autoCreateChannelOnTop(): channel temp always on top.
+
+## autoCreateChannelPrivate(): new channel created will be private
