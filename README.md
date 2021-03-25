@@ -41,6 +41,14 @@ tempChannel.autoCreateChannel(client, {
     nameStartsWithTemp: "* ",
 });
 
+//Private channel method (Only creator has access)
+tempChannel.autoCreateChannelPrivate(client, {
+    userLimit: 10,
+    reason: "powered by ds112",
+    nameStartsWith: "[p] 3AT",
+    nameStartsWithTemp: "[p] *"
+}); // You need to come up with your own implementation on how to invite another users to this channel.
+
 client.login("YOUR_DISCORD_APP_TOKEN");
 ```
 
