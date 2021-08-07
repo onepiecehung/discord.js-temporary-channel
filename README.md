@@ -54,7 +54,7 @@ VC.autoCreateTemporaryVoiceChannel();
 
 // todo: create voice private, thanks to @nodgear
 // Private channel method (Only creator has access)
-VC.autoCreateTemporaryVoiceChannel();
+VC.autoCreateTemporaryVoiceChannelPrivate();
 // You need to come up with your own implementation on how to invite another users to this channel.
 client.on("ready", () => {
     console.log(`Logged in as ${client?.user?.tag}!`);
