@@ -7,19 +7,21 @@
 
 # Discord.js-Temporary-Channel (Only for voice channel)
 
-![javascript](https://img.shields.io/badge/javascript-ESNEXT-brightgreen.svg?logo=javascript&style=for-the-badge)
-
-### Discord: https://discord.gg/TfG5hep
+![Typescript](https://img.shields.io/badge/Typescript-4.4.x.dev-brightgreen.svg?logo=typescript&style=for-the-badge)
+![Node 16](https://img.shields.io/badge/NodeJS-16.6.1-brightgreen.svg?logo=node.js&style=for-the-badge)
 
 ### QR
 
 <img align="left" width="235" height="235" src="./qrcode/invite.gif">
+<iframe src="https://discord.com/widget?id=632187373853212673&theme=dark" width="450" height="230" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
 
 ### Important
 
--   Support ^discord.js@12.5.1 in version 2
+-   **Version 3, we support discord.js version 13, support typescript**
 
--   If you using discord.js version < 12 please using version 1
+-   **Version 2, we support discord.js version 12**
+
+-   **Version 1, we support discord.js version less than 12**
 
 ### Thanks to Pie from RDVN
 
@@ -28,32 +30,44 @@ npm i discord.js-temporary-channel
 yarn add discord.js-temporary-channel
 ```
 
-```javascript
-const Discord = require("discord.js");
-const client = new Discord.Client();
-const tempChannel = require("discord.js-temporary-channel");
+```ts
+import { Client, Intents } from "discord.js";
 
-//just call API
-tempChannel.autoCreateChannel(client, {
-    userLimit: 12,
+const client = new Client({
+    intents: [
+        Intents.FLAGS.GUILDS,
+        Intents.FLAGS.GUILD_MESSAGES,
+        Intents.FLAGS.GUILD_VOICE_STATES,
+    ],
+});
+
+import TVC from "discord.js-temporary-channel";
+
+const VC = new TVC(client, {
+    userLimit: 23,
     reason: "powered by ds112",
     nameStartsWith: "3AT ",
     nameStartsWithTemp: "* ",
 });
 
-//Private channel method (Only creator has access)
-tempChannel.autoCreateChannelPrivate(client, {
-    userLimit: 10,
-    reason: "powered by ds112",
-    nameStartsWith: "[p] 3AT",
-    nameStartsWithTemp: "[p] *"
-}); // You need to come up with your own implementation on how to invite another users to this channel.
+// todo: create voice public
+VC.autoCreateTemporaryVoiceChannel();
 
-client.login("YOUR_DISCORD_APP_TOKEN");
+// todo: create voice private, thanks to @nodgear
+// Private channel method (Only creator has access)
+VC.autoCreateTemporaryVoiceChannel();
+// You need to come up with your own implementation on how to invite another users to this channel.
+client.on("ready", () => {
+    console.log(`Logged in as ${client?.user?.tag}!`);
+});
+
+client.login("TOKEN");
 ```
 
-# API
+## API
 
-## autoCreateChannelOnTop(): channel temp always on top.
+### autoCreateChannelPrivate(): new channel created will be private
 
-## autoCreateChannelPrivate(): new channel created will be private
+```
+
+```

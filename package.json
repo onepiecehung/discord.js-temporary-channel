@@ -1,9 +1,10 @@
 {
   "name": "discord.js-temporary-channel",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "This package create temporary voice channel for discord",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,5 +27,8 @@
   "homepage": "https://github.com/onepiecehung/discord.js-temporary-channel#readme",
   "contributors": [
     "@nodgear"
-  ]
+  ],
+  "dependencies": {
+    "discord.js": "^13.0.0"
+  }
 }
