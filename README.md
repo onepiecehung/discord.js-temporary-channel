@@ -66,7 +66,7 @@ client.login("TOKEN");
 
 ## API
 
-### autoCreateChannelPrivate(): new channel created will be private
+### autoCreateTemporaryVoiceChannelPrivate(): new channel created will be private
 
 ```
 
