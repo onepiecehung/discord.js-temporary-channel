@@ -13,7 +13,6 @@
 ### QR
 
 <img align="left" width="235" height="235" src="./qrcode/invite.gif">
-<iframe src="https://discord.com/widget?id=632187373853212673&theme=dark" width="450" height="230" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
 
 ### Important
 
@@ -46,8 +45,8 @@ import TVC from "discord.js-temporary-channel";
 const VC = new TVC(client, {
     userLimit: 23,
     reason: "powered by ds112",
-    nameStartsWith: "3AT ",
-    nameStartsWithTemp: "* ",
+    nameStartWith: "3AT ",
+    nameStartWithTemporary: "* ",
 });
 
 // todo: create voice public
