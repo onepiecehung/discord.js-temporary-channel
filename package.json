@@ -1,6 +1,6 @@
 {
   "name": "discord.js-temporary-channel",
-  "version": "3.0.3",
+  "version": "4.0.0",
   "description": "This package create temporary voice channel for discord",
   "main": "index.js",
   "scripts": {
