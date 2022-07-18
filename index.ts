@@ -1,10 +1,13 @@
 import {
-    Client,
-    VoiceState,
-    Channel,
-    Permissions,
     CategoryChannelResolvable,
+    ChannelType,
+    Client,
+    PermissionFlagsBits,
+    StageChannel,
+    VoiceChannel,
+    VoiceState,
 } from "discord.js";
+
 type TOptions = {
     userLimit?: number;
     nameStartWith?: string;
@@ -53,8 +56,16 @@ export default class CTemporaryVoiceChannel {
                                 try {
                                     oldState?.channel
                                         .fetch()
-                                        .then((channel: Channel) =>
-                                            channel.delete()
+                                        .then(
+                                            (
+                                                channel:
+                                                    | VoiceChannel
+                                                    | StageChannel
+                                            ) => {
+                                                channel.delete(
+                                                    `Voice channel ${channel.name} deleted, powered by DS112`
+                                                );
+                                            }
                                         );
                                 } catch (error) {
                                     oldState?.channel.delete();
@@ -70,48 +81,57 @@ export default class CTemporaryVoiceChannel {
                                     try {
                                         oldState?.channel
                                             .fetch()
-                                            .then((channel: Channel) =>
-                                                channel.delete()
+                                            .then(
+                                                (
+                                                    channel:
+                                                        | VoiceChannel
+                                                        | StageChannel
+                                                ) => {
+                                                    channel.delete(
+                                                        `Voice channel ${channel.name} deleted, powered by DS112`
+                                                    );
+                                                }
                                             );
                                     } catch (error) {
                                         oldState?.channel.delete();
                                         console.error(error);
                                     }
-                                } else {
-                                    // todo: change name
-                                    let matchMember =
-                                        oldState?.channel.members.find(
-                                            (x: any) =>
-                                                `${this.nameStartWithTemporary}${x.displayName}` ==
-                                                oldState?.channel?.name
-                                        );
-                                    if (matchMember == null) {
-                                        oldState?.channel.setName(
-                                            `${this.nameStartWithTemporary}${
-                                                oldState?.channel.members.random()
-                                                    .displayName
-                                            }`
-                                        );
-                                    }
                                 }
+                                // else {
+                                //     // todo: change name
+                                //     let matchMember =
+                                //         oldState?.channel.members.find(
+                                //             (x: any) =>
+                                //                 `${this.nameStartWithTemporary}${x.displayName}` ==
+                                //                 oldState?.channel?.name
+                                //         );
+                                //     if (matchMember == null) {
+                                //         oldState?.channel.setName(
+                                //             `${this.nameStartWithTemporary}${
+                                //                 oldState?.channel?.members?.random()
+                                //                     .displayName || "Unknown"
+                                //             }`
+                                //         );
+                                //     }
+                                // }
                                 break;
 
                             default:
                                 // todo: change name
-                                let matchMember =
-                                    oldState?.channel.members.find(
-                                        (x: any) =>
-                                            `${this.nameStartWithTemporary}${x.displayName}` ==
-                                            oldState?.channel?.name
-                                    );
-                                if (matchMember == null) {
-                                    oldState?.channel.setName(
-                                        `${this.nameStartWithTemporary}${
-                                            oldState?.channel.members.random()
-                                                .displayName
-                                        }`
-                                    );
-                                }
+                                // let matchMember =
+                                //     oldState?.channel.members.find(
+                                //         (x: any) =>
+                                //             `${this.nameStartWithTemporary}${x.displayName}` ==
+                                //             oldState?.channel?.name
+                                //     );
+                                // if (matchMember == null) {
+                                //     oldState?.channel.setName(
+                                //         `${this.nameStartWithTemporary}${
+                                //             oldState?.channel.members.random()
+                                //                 .displayName
+                                //         }`
+                                //     );
+                                // }
                                 break;
                         }
                     }
@@ -124,24 +144,22 @@ export default class CTemporaryVoiceChannel {
                 ) {
                     const everyone = newState.guild.roles.everyone;
                     newState.guild.channels
-                        .create(
-                            `${this.nameStartWithTemporary}${newState?.member?.user.username}`,
-                            {
-                                bitrate: newState.channel.bitrate || 64000,
-                                type: "GUILD_VOICE",
-                                topic: this.reason,
-                                parent: newState?.channel
-                                    ?.parent as CategoryChannelResolvable,
-                                userLimit: this.userLimit,
-                                reason: this.reason,
-                                permissionOverwrites: [
-                                    {
-                                        id: everyone.id,
-                                        allow: [Permissions.FLAGS.VIEW_CHANNEL],
-                                    },
-                                ],
-                            }
-                        )
+                        .create({
+                            type: ChannelType.GuildVoice,
+                            name: `${this.nameStartWithTemporary}${newState?.member?.user.username}`,
+                            bitrate: newState.channel.bitrate || 64000,
+                            topic: this.reason,
+                            parent: newState?.channel
+                                ?.parent as CategoryChannelResolvable,
+                            userLimit: this.userLimit,
+                            reason: this.reason,
+                            permissionOverwrites: [
+                                {
+                                    id: everyone.id,
+                                    allow: [PermissionFlagsBits.ViewChannel],
+                                },
+                            ],
+                        })
                         .then(async (cloneChannel: any) => {
                             newState.setChannel(cloneChannel);
                         });
@@ -168,8 +186,16 @@ export default class CTemporaryVoiceChannel {
                                 try {
                                     oldState?.channel
                                         .fetch()
-                                        .then((channel: Channel) =>
-                                            channel.delete()
+                                        .then(
+                                            (
+                                                channel:
+                                                    | VoiceChannel
+                                                    | StageChannel
+                                            ) => {
+                                                channel.delete(
+                                                    `Voice channel ${channel.name} deleted, powered by DS112`
+                                                );
+                                            }
                                         );
                                 } catch (error) {
                                     oldState?.channel.delete();
@@ -185,48 +211,57 @@ export default class CTemporaryVoiceChannel {
                                     try {
                                         oldState?.channel
                                             .fetch()
-                                            .then((channel: Channel) =>
-                                                channel.delete()
+                                            .then(
+                                                (
+                                                    channel:
+                                                        | VoiceChannel
+                                                        | StageChannel
+                                                ) => {
+                                                    channel.delete(
+                                                        `Voice channel ${channel.name} deleted, powered by DS112`
+                                                    );
+                                                }
                                             );
                                     } catch (error) {
                                         oldState?.channel.delete();
                                         console.error(error);
                                     }
-                                } else {
-                                    // todo: change name
-                                    let matchMember =
-                                        oldState?.channel.members.find(
-                                            (x: any) =>
-                                                `${this.nameStartWithTemporary}${x.displayName}` ==
-                                                oldState?.channel?.name
-                                        );
-                                    if (matchMember == null) {
-                                        oldState?.channel.setName(
-                                            `${this.nameStartWithTemporary}${
-                                                oldState?.channel.members.random()
-                                                    .displayName
-                                            }`
-                                        );
-                                    }
                                 }
+                                // else {
+                                //     // todo: change name
+                                //     let matchMember =
+                                //         oldState?.channel.members.find(
+                                //             (x: any) =>
+                                //                 `${this.nameStartWithTemporary}${x.displayName}` ==
+                                //                 oldState?.channel?.name
+                                //         );
+                                //     if (matchMember == null) {
+                                //         oldState?.channel.setName(
+                                //             `${this.nameStartWithTemporary}${
+                                //                 oldState?.channel.members.random()
+                                //                     .displayName
+                                //             }`
+                                //         );
+                                //     }
+                                // }
                                 break;
 
                             default:
                                 // todo: change name
-                                let matchMember =
-                                    oldState?.channel.members.find(
-                                        (x: any) =>
-                                            `${this.nameStartWithTemporary}${x.displayName}` ==
-                                            oldState?.channel?.name
-                                    );
-                                if (matchMember == null) {
-                                    oldState?.channel.setName(
-                                        `${this.nameStartWithTemporary}${
-                                            oldState?.channel.members.random()
-                                                .displayName
-                                        }`
-                                    );
-                                }
+                                // let matchMember =
+                                //     oldState?.channel.members.find(
+                                //         (x: any) =>
+                                //             `${this.nameStartWithTemporary}${x.displayName}` ==
+                                //             oldState?.channel?.name
+                                //     );
+                                // if (matchMember == null) {
+                                //     oldState?.channel.setName(
+                                //         `${this.nameStartWithTemporary}${
+                                //             oldState?.channel.members.random()
+                                //                 .displayName
+                                //         }`
+                                //     );
+                                // }
                                 break;
                         }
                     }
@@ -239,38 +274,68 @@ export default class CTemporaryVoiceChannel {
                 ) {
                     const everyone = newState.guild.roles.everyone;
                     newState.guild.channels
-                        .create(
-                            `${this.nameStartWithTemporary}${newState?.member?.user.username}`,
-                            {
-                                bitrate: newState.channel.bitrate || 64000,
-                                type: "GUILD_VOICE",
-                                topic: this.reason,
-                                parent: newState?.channel
-                                    ?.parent as CategoryChannelResolvable,
-                                userLimit: this.userLimit,
-                                reason: this.reason,
-                                permissionOverwrites: [
-                                    {
-                                        id: everyone.id,
-                                        deny: [
-                                            Permissions.FLAGS.CONNECT,
-                                            Permissions.FLAGS.VIEW_CHANNEL,
-                                        ],
-                                    },
-                                    {
-                                        id: newState?.member?.user.id as string,
-                                        allow: [
-                                            Permissions.FLAGS.CONNECT,
-                                            Permissions.FLAGS.VIEW_CHANNEL,
-                                            Permissions.FLAGS.MOVE_MEMBERS,
-                                            Permissions.FLAGS.MUTE_MEMBERS,
-                                            Permissions.FLAGS.SPEAK,
-                                            Permissions.FLAGS.STREAM,
-                                        ],
-                                    },
-                                ],
-                            }
-                        )
+                        .create({
+                            type: ChannelType.GuildVoice,
+                            name: `${this.nameStartWithTemporary}${newState?.member?.user.username}`,
+                            bitrate: newState.channel.bitrate || 64000,
+                            topic: this.reason,
+                            parent: newState?.channel
+                                ?.parent as CategoryChannelResolvable,
+                            userLimit: this.userLimit,
+                            reason: this.reason,
+                            permissionOverwrites: [
+                                {
+                                    id: newState?.member?.user.id as string,
+                                    allow: [
+                                        PermissionFlagsBits.ViewChannel,
+                                        PermissionFlagsBits.Connect,
+                                        PermissionFlagsBits.MoveMembers,
+                                        PermissionFlagsBits.MuteMembers,
+                                        PermissionFlagsBits.Speak,
+                                        PermissionFlagsBits.Stream,
+                                    ],
+                                },
+                                {
+                                    id: everyone.id,
+                                    deny: [
+                                        PermissionFlagsBits.ViewChannel,
+                                        PermissionFlagsBits.Connect,
+                                    ],
+                                },
+                            ],
+                        })
+                        // .create(
+                        //     `${this.nameStartWithTemporary}${newState?.member?.user.username}`,
+                        //     {
+                        //         bitrate: newState.channel.bitrate || 64000,
+                        //         type: "GUILD_VOICE",
+                        //         topic: this.reason,
+                        //         parent: newState?.channel
+                        //             ?.parent as CategoryChannelResolvable,
+                        //         userLimit: this.userLimit,
+                        //         reason: this.reason,
+                        //         permissionOverwrites: [
+                        //             {
+                        //                 id: everyone.id,
+                        //                 deny: [
+                        //                     Permissions.FLAGS.CONNECT,
+                        //                     Permissions.FLAGS.VIEW_CHANNEL,
+                        //                 ],
+                        //             },
+                        //             {
+                        //                 id: newState?.member?.user.id as string,
+                        //                 allow: [
+                        //                     Permissions.FLAGS.CONNECT,
+                        //                     Permissions.FLAGS.VIEW_CHANNEL,
+                        //                     Permissions.FLAGS.MOVE_MEMBERS,
+                        //                     Permissions.FLAGS.MUTE_MEMBERS,
+                        //                     Permissions.FLAGS.SPEAK,
+                        //                     Permissions.FLAGS.STREAM,
+                        //                 ],
+                        //             },
+                        //         ],
+                        //     }
+                        // )
                         .then(async (cloneChannel: any) => {
                             newState.setChannel(cloneChannel);
                         });

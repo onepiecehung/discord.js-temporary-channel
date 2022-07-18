@@ -16,6 +16,8 @@
 
 ### Important
 
+-   **Version 4, we support discord.js@14.0.1**
+
 -   **Version 3, we support discord.js version 13, support typescript**
 
 -   **Version 2, we support discord.js version 12**
@@ -30,14 +32,15 @@ yarn add discord.js-temporary-channel
 ```
 
 ```ts
-import { Client, Intents } from "discord.js";
+import { Client, GatewayIntentBits, Partials } from "discord.js";
 
 const client = new Client({
     intents: [
-        Intents.FLAGS.GUILDS,
-        Intents.FLAGS.GUILD_MESSAGES,
-        Intents.FLAGS.GUILD_VOICE_STATES,
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildVoiceStates,
     ],
+    partials: [Partials.Channel],
 });
 
 import TVC from "discord.js-temporary-channel";
@@ -65,8 +68,4 @@ client.login("TOKEN");
 
 ## API
 
-### autoCreateTemporaryVoiceChannelPrivate(): new channel created will be private
-
-```
-
-```
+### autoCreateTemporaryVoiceChannelPrivate(): new channel created will be private [@nodgear](https://github.com/nodgear)
