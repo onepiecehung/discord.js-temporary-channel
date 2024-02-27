@@ -102,7 +102,7 @@ class CTemporaryVoiceChannel {
                     type: discord_js_1.ChannelType.GuildVoice,
                     name: `${this.nameStartWithTemporary}${newState?.member?.user.username}`,
                     bitrate: newState.channel.bitrate || 64000,
-                    topic: this.reason,
+                    // topic: this.reason,
                     parent: newState?.channel
                         ?.parent,
                     userLimit: this.userLimit,
@@ -202,7 +202,7 @@ class CTemporaryVoiceChannel {
                     type: discord_js_1.ChannelType.GuildVoice,
                     name: `${this.nameStartWithTemporary}${newState?.member?.user.username}`,
                     bitrate: newState.channel.bitrate || 64000,
-                    topic: this.reason,
+                    // topic: this.reason,
                     parent: newState?.channel
                         ?.parent,
                     userLimit: this.userLimit,

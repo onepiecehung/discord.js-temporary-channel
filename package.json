@@ -29,6 +29,6 @@
     "@nodgear"
   ],
   "dependencies": {
-    "discord.js": "^14.0.1"
+    "discord.js": "^14.14.1"
   }
 }
