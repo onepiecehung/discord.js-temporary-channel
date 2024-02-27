@@ -247,7 +247,7 @@ export default class CTemporaryVoiceChannel {
               type: ChannelType.GuildVoice,
               name: `${this.nameStartWithTemporary}${newState?.member?.user.username}`,
               bitrate: newState.channel.bitrate || 64000,
-              topic: this.reason,
+            //   topic: this.reason,
               parent: newState?.channel?.parent as CategoryChannelResolvable,
               userLimit: this.userLimit,
               reason: this.reason,
