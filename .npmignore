@@ -1,1 +1,4 @@
 .claude
+.github
+dist
+tsconfig.json
