@@ -220,6 +220,8 @@ export default class CTemporaryVoiceChannel {
         parent: originalChannel.parent as CategoryChannelResolvable,
         bitrate: originalChannel.bitrate ?? 64000,
         userLimit: this.userLimit,
+        rtcRegion: originalChannel.rtcRegion ?? undefined,
+        videoQualityMode: originalChannel.videoQualityMode ?? undefined,
         permissionOverwrites: permissions,
         reason: this.reason,
       });
@@ -278,6 +280,8 @@ export default class CTemporaryVoiceChannel {
         parent: originalChannel.parent as CategoryChannelResolvable,
         bitrate: originalChannel.bitrate ?? 64000,
         userLimit: this.userLimit,
+        rtcRegion: originalChannel.rtcRegion ?? undefined,
+        videoQualityMode: originalChannel.videoQualityMode ?? undefined,
         permissionOverwrites: permissions,
         reason: this.reason,
       });

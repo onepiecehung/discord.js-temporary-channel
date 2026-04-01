@@ -181,6 +181,8 @@ class CTemporaryVoiceChannel {
                 parent: originalChannel.parent,
                 bitrate: originalChannel.bitrate ?? 64000,
                 userLimit: this.userLimit,
+                rtcRegion: originalChannel.rtcRegion ?? undefined,
+                videoQualityMode: originalChannel.videoQualityMode ?? undefined,
                 permissionOverwrites: permissions,
                 reason: this.reason,
             });
@@ -235,6 +237,8 @@ class CTemporaryVoiceChannel {
                 parent: originalChannel.parent,
                 bitrate: originalChannel.bitrate ?? 64000,
                 userLimit: this.userLimit,
+                rtcRegion: originalChannel.rtcRegion ?? undefined,
+                videoQualityMode: originalChannel.videoQualityMode ?? undefined,
                 permissionOverwrites: permissions,
                 reason: this.reason,
             });

@@ -29,7 +29,7 @@
     "@nodgear"
   ],
   "dependencies": {
-    "discord.js": "^14.14.1"
+    "discord.js": "^14.26.0"
   },
   "devDependencies": {
     "typescript": "^5.8.2"

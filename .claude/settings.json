@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "command": "npx tsc --noEmit 2>&1 | head -20"
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "command": "node -e \"const input = JSON.parse(require('fs').readFileSync('/dev/stdin', 'utf8')); if (input.file_path && input.file_path.includes('package-lock.json')) { console.error('Blocked: do not edit package-lock.json directly'); process.exit(2); }\" 2>&1"
+      }
+    ]
+  },
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upwindai/context7-mcp@latest"]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"]
+    }
+  }
+}
